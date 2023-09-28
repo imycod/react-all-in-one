@@ -8,26 +8,19 @@
  * https://getbootstrap.com/
  */
 
-import { Fragment, useState } from "react";
+import { useState, MouseEvent } from "react";
 
-import { MouseEvent } from "react";
+interface Props {
+  items: string[];
+  heading: string;
+}
 
-function ListGroup() {
-  let items = ["New York", "Los Angeles", "Chicago", "Houston", "Philadelphia"];
+function ListGroup({items,heading}:Props) {
   const [selectedIndex, setSelectedIndex] = useState(-1);
-
-  // items = [];
-
-  // const getMessage = () => {
-  //   return items.length === 0 ? <p>No item found</p> : null;
-  // };
-
-  const handleClick = (event: MouseEvent) => {};
+  
   return (
-    <Fragment>
-      {/*  React.createElement('h1') */}
-      <h1>List</h1>
-      {/* {getMessage()} */}
+    <>
+      <h1>{heading}</h1>
       {items.length === 0 && <p>No item found</p>}
       <ul className="list-group">
         {items.map((item, index) => (
@@ -45,7 +38,7 @@ function ListGroup() {
           </li>
         ))}
       </ul>
-    </Fragment>
+    </>
   );
 }
 
