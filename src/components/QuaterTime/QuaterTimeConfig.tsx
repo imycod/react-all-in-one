@@ -44,10 +44,63 @@ export default function QuaterTimeConfig() {
     ));
   }
 
+  function getIndex(key: string) {
+    const date = new Date();
+    const month = date.getMonth() + 1;
+    const periods = {
+      Q: {
+        // 季度考核
+        divisor: 3,
+        round: Math.ceil,
+      },
+      H: {
+        // 半年度考核
+        divisor: 6,
+        round: Math.ceil,
+      },
+      M: {
+        // 月度考核
+        divisor: 1,
+        round: Math.round,
+      },
+      Y: {
+        // 年度
+        divisor: null,
+        round: null,
+      },
+    };
+    const period = periods[key];
+    let index = 0;
+    if (period.divisor) {
+      index = period.round(month / period.divisor); // -1 看你model options的value是从0开始还是从1开始
+    }
+    return index;
+  }
+
+  //   function generateMonthOptions() {
+  //     const ls = [];
+  //     for (let i = 0; i < 12; i++) {
+  //       const obj = {
+  //         index: `${i}`,
+  //         label: `M${i + 1}`,
+  //       };
+  //       ls.push(obj);
+  //     }
+  //     return ls;
+  //   }
+
   useEffect(() => {
-    console.log(111);
-    console.log(query);
+    console.log('query',query);
+    // const index = getIndex(query);
+    // console.log( query['quarter']);
+    // query['quarter'] = query + index 
+    // setQuery(query + index)
+    // console.log(index);
   }, [query]);
+
+  function setQuarter(value) {
+    setQuery(value)
+  }
 
   const model = [
     {
@@ -58,9 +111,8 @@ export default function QuaterTimeConfig() {
       onchange: (event) => {
         const value = event.target.value;
         setQuery(value);
-        console.log(value);
-        console.log(2222);
-        console.log(query);
+        // const index = getIndex(value);
+        // console.log(value + index);
         setBasQuarterOptions(value);
       },
     },
@@ -71,7 +123,7 @@ export default function QuaterTimeConfig() {
       label: "考核时间",
       onchange: (event) => {
         const value = event.target.value;
-        setQuery(value);
+        setQuarter(value)
       },
     },
   ];

@@ -6,7 +6,6 @@ function App() {
     <div>
       {/* <QuaterTime></QuaterTime>   */}
       <QuaterTimeConfig></QuaterTimeConfig>  
-      <QuaterTimeConfig></QuaterTimeConfig>  
     </div>
   );
 }
