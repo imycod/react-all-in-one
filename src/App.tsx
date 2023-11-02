@@ -15,7 +15,7 @@ function App() {
     <div>
       {/* <QuaterTime></QuaterTime>   */}
       {/* <QuaterTimeConfig></QuaterTimeConfig>   */}
-      { emptyArray.map((_,i)=><li className={'m-l-'+ i}>i</li>) }
+      { emptyArray.map((_,i)=><li className={'m-l-'+ 2}>i</li>) }
     </div>
   );
 }
