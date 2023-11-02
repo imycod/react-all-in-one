@@ -98,9 +98,6 @@ export default function QuaterTimeConfig() {
     // console.log(index);
   }, [query]);
 
-  function setQuarter(value) {
-    setQuery(value)
-  }
 
   const model = [
     {
@@ -123,7 +120,7 @@ export default function QuaterTimeConfig() {
       label: "考核时间",
       onchange: (event) => {
         const value = event.target.value;
-        setQuarter(value)
+        setQuery(value);
       },
     },
   ];
