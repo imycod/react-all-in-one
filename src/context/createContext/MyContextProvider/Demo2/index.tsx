@@ -12,10 +12,15 @@ import React, { createContext, useState } from 'react'
 import AgeInfo from './AgeInfo'
 import SavingInfo from './SavingInfo'
 
+const initialValue={
+    age:0,
+    addAge:()=>{},
+    saving:0,
+    addSaving:()=>{}
+}
+export const InfoContext=createContext(initialValue)
+
 export default function Demo1() {
-
-    createContext(init)
-
     const [age, setAge] = useState(20)
     const addAge = () => {
         setAge(prev => prev + 1)
@@ -26,9 +31,12 @@ export default function Demo1() {
         setSaving(prev => prev + 1000)
     }
     return (
-        <div>
-            <AgeInfo age={age} addAge={addAge}></AgeInfo>
-            <SavingInfo saving={saving} addSaving={addSaving}></SavingInfo>
-        </div>
-    )
-}
+        <InfoContext.Provider value={{age, addAge, saving, addSaving}}>
+            <div style={{border:'1px solid black'}}>
+                <AgeInfo></AgeInfo>
+                <p></p>
+                <SavingInfo></SavingInfo>
+            </div>
+        </InfoContext.Provider>
+    );
+};

@@ -14,10 +14,11 @@ type SavingInfoProps = {
 }
 export default function SavingInfo(props: SavingInfoProps) {
   const { saving, addSaving } = props
-  return (
-    <div className='info-card'>
-      <span>{saving}</span>
-      <button onClick={addSaving}>addSaving</button>
-    </div>
-  )
+    return (
+        <div className='info-card'>
+            <span>{saving}</span>
+            <button onClick={addSaving}>addSaving</button>
+            <span>{Math.random()}</span>
+        </div>
+    );
 }

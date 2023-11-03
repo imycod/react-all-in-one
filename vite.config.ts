@@ -21,7 +21,7 @@ export default defineConfig({
 
           ],
           plugins: [
-            jsxClassExtractor()
+            // jsxClassExtractor()
           ],
           // Use babel.config.js files
           configFile: false,

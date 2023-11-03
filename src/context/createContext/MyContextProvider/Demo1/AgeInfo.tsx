@@ -15,12 +15,14 @@ type AgeInfoProps = {
 }
 
 export default function AgeInfo({ age, addAge }: AgeInfoProps) {
-  return (
-    <div className='info-card'>
-      <span>{age}</span>
-      <button onClick={addAge}>age ++</button>
-    </div>
-  )
+    return (
+        <div className='info-card'>
+            <p>savinginfo和ageinfo会触发父组件渲染，同时子组件跟着渲染</p>
+            <span>{age}</span>
+            <button onClick={addAge}>age ++</button>
+            <span>{Math.random()}</span>
+        </div>
+    );
 }
 AgeInfo.propTypes = {
   age: PropTypes.number.isRequired,

@@ -11,6 +11,7 @@ import React, { useState } from 'react'
 
 import AgeInfo from './AgeInfo'
 import SavingInfo from './SavingInfo'
+import Counter from "./Counter"
 export default function Demo1() {
     const [age, setAge] = useState(20)
     const addAge = () => {
@@ -23,6 +24,7 @@ export default function Demo1() {
     }
     return (
         <div>
+            <Counter></Counter>
             <AgeInfo age={age} addAge={addAge}></AgeInfo>
             <SavingInfo saving={saving} addSaving={addSaving}></SavingInfo>
         </div>
