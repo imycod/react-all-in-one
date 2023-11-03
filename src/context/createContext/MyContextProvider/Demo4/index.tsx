@@ -1,17 +1,17 @@
 import React from 'react';
-
-import MyContextProvider from "./MyContextProvider.tsx";
 import AgeInfo from "./AgeInfo.tsx";
 import SavingInfo from "./SavingInfo.tsx";
-function Demo3() {
+import {MyContainer} from "./MyContextProvider.tsx";
+
+function Demo4() {
     return (
-        <MyContextProvider>
-            <div>
+        <MyContainer.Provider>
+            <div className="App">
                 <AgeInfo></AgeInfo>
                 <SavingInfo></SavingInfo>
             </div>
-        </MyContextProvider>
+        </MyContainer.Provider>
     );
 }
 
-export default Demo3;
+export default Demo4;

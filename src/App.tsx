@@ -8,12 +8,20 @@
  */
 
 import Context from "./context/Context"
+import ReducerExample from "./useReducer"
 function App() {
-  return (
-    <div>
-      <Context></Context>
-    </div>
-  );
+    return (
+        <div>
+            <div>
+                <h4>useContext</h4>
+                <Context></Context>
+            </div>
+            <div>
+                <h4>useReducer</h4>
+                <ReducerExample></ReducerExample>
+            </div>
+        </div>
+    );
 }
 
 export default App;

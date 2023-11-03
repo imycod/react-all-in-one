@@ -1,13 +1,14 @@
 import React, {createContext, useContext, useState} from 'react';
 
-const InfoContext = createContext({
+type TInitialValue={
     age: 0,
     addAge:()=> {
     },
     saving: 0,
     addSaving:()=> {
     }
-});
+}
+const InfoContext = createContext({} as TInitialValue);
 export function useInfoContext() {
     return useContext(InfoContext)
 }
