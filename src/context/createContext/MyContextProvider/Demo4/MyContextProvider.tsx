@@ -10,20 +10,19 @@ type TAction = {
 const reducer: ImmerReducer<typeof initialValue, TAction> = (state, action) => {
     switch (action.type) {
         case "addAge":
-            return {
-                ...state,
-                age: state.age + 1,
-            }
+            state.age += 1
+            break
         case "addSaving":
-            return {
-                ...state,
-                saving: state.saving + 1000,
-            };
+            state.saving += 1000;
+            break
         default:
-            return state;
+            break;
     }
 };
 function useValue() {
+    // useState -> null -> setState
+    // useReducer -> typeof Reducer -> dispatch
+    // useImmerReducer -> typeof ImmerReducer -> state.props
     return useImmerReducer(reducer,initialValue)
 }
 
