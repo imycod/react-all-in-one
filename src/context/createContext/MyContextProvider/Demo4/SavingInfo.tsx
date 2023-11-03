@@ -9,14 +9,11 @@
 import React from 'react'
 import {MyContainer} from "./MyContextProvider.tsx";
 export default function SavingInfo() {
-    const [state,setState] = MyContainer.useTracked()
-    function addSaving() {
-        setState((prev)=>({...prev,saving: prev.saving+1}))
-    }
+    const [state,dispatch] = MyContainer.useTracked()
     return (
         <div className='info-card'>
             <span>{state.saving}</span>
-            <button onClick={addSaving}>addSaving</button>
+            <button onClick={()=>dispatch({type:'addSaving'})}>addSaving</button>
             <span>{Math.random()}</span>
         </div>
     );

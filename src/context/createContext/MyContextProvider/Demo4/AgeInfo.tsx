@@ -10,18 +10,11 @@ import React from 'react'
 import {MyContainer} from "./MyContextProvider.tsx";
 
 export default function AgeInfo() {
-    const [state,setState] = MyContainer.useTracked();
-    console.log(state.age)
-    function addAge() {
-        setState((prev)=>({
-            ...prev,
-            age: prev.age + 1,
-        }))
-    }
+    const [state,dispatch] = MyContainer.useTracked();
     return (
         <div className='info-card'>
             <span>{state.age}</span>
-            <button onClick={addAge}>age ++</button>
+            <button onClick={() => dispatch({type: 'addAge'})}>age ++</button>
             <span>{Math.random()}</span>
         </div>
     );
