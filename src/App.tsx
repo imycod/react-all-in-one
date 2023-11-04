@@ -11,16 +11,16 @@ import ContextExample from "./useContext/Context"
 import ReducerExample from "./useReducer"
 function App() {
     return (
-        <div>
+        <>
             <div>
                 <h4>useContext</h4>
                 <ContextExample></ContextExample>
             </div>
-            <div>
-                <h4>useReducer</h4>
-                <ReducerExample></ReducerExample>
-            </div>
-        </div>
+            {/*<div>*/}
+            {/*    <h4>useReducer</h4>*/}
+            {/*    <ReducerExample></ReducerExample>*/}
+            {/*</div>*/}
+        </>
     );
 }
 
