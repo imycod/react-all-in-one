@@ -1,42 +1,33 @@
-import React, {PureComponent, Component, createContext, memo, useState, useContext, useMemo} from 'react';
-import {atom,useAtom} from "jotai"
+import React, {PureComponent, createContext, memo} from 'react';
 
 const UserInfo = createContext({})
 const Role = createContext({})
-
-const UserContextAtom = atom({})
-function useUserContextAtom() {
-    return useAtom(UserContextAtom)
-}
-
-function UserContainer() {
-    const [user,setUser]=useState({
+class UserContainer extends PureComponent {
+    state={
         userInfo: {
             name: 'bill'
         },
         role: "admin"
-    })
-
-   function setRole(role){
-       setUser((prev) => ({
-           ...prev,
-           role: role
-       }));
     }
 
-    const roleContext=useMemo(()=>({role:user.role,setRole}),[user.role,setRole])
-    return (
-        <div className="bd">
-            <UserInfo.Provider value={user.userInfo}>
-                <Role.Provider value={roleContext}>
-                    <>
+    setRole=(role)=>{
+        this.setState({
+            role
+        })
+    }
+
+    render() {
+        return (
+            <div className="bd">
+                <UserInfo.Provider value={this.state.userInfo}>
+                    <Role.Provider value={{role: this.state.role, setRole: this.setRole}}>
                         <span>最外层提供Provider父级 {Math.random()}</span>
                         <UserCardContainer></UserCardContainer>
-                    </>
-                </Role.Provider>
-            </UserInfo.Provider>
-        </div>
-    );
+                    </Role.Provider>
+                </UserInfo.Provider>
+            </div>
+        )
+    }
 }
 
 const UserCardContainer = memo(()=>{
@@ -48,16 +39,21 @@ const UserCardContainer = memo(()=>{
     );
 })
 function UserCard(){
-    const context= useContext(UserInfo)
     return (
-        <div className="bd" style={{display:'flex',}}>
-            <span>组件:B {context.name} - {Math.random()}</span>
-            <RoleComponent userInfo={context}></RoleComponent>
-            <SavingInfo></SavingInfo>
-        </div>
+        <UserInfo.Consumer>
+            {
+                userInfo => (
+                    <div className="bd" style={{display:'flex',}}>
+                        <span>组件:B {userInfo.name} - {Math.random()}</span>
+                        <RoleComponent userInfo={userInfo}></RoleComponent>
+                        <SavingInfo></SavingInfo>
+                    </div>
+                )
+            }
+        </UserInfo.Consumer>
     )
 }
-const SavingInfo = memo(() => {
+const SavingInfo = memo((props) => {
     return (
         <div className='bd'>
             组件B2: 这是其他不会变得信息
