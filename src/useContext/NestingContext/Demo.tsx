@@ -1,9 +1,9 @@
-import React, {Component, createContext, memo, useMemo} from 'react';
+import React, {Component,PureComponent, createContext, memo, useMemo} from 'react';
 import {preview} from "vite";
 
 const UserInfo = createContext({})
 const Role = createContext({})
-class UserContainer extends Component {
+class UserContainer extends PureComponent {
     state={
         userInfo: {
             name: 'bill'
@@ -16,14 +16,16 @@ class UserContainer extends Component {
             role
         })
     }
-
     render(){
         return (
+        <div className="bd">
             <UserInfo.Provider value={this.state.userInfo}>
                 <Role.Provider value={{role:this.state.role,setRole:this.setRole}}>
                     <UserCardContainer></UserCardContainer>
+                    <span>最外层提供Provider父级 {Math.random()}</span>
                 </Role.Provider>
             </UserInfo.Provider>
+        </div>
         )
     }
 }
