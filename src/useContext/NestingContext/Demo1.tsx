@@ -1,12 +1,9 @@
-import React, {PureComponent, Component, createContext, memo, useState, useContext, useMemo} from 'react';
-import {atom,useAtom} from "jotai"
-
-const UserInfo = createContext({})
-const Role = createContext({})
+import React, { memo} from 'react';
+import {atom,useAtom,Provider} from "jotai"
 
 const UserContextAtom = atom({
     userInfo:{
-        name:'ss'
+        name: 'ss',
     },
     role:'admin'
 })
@@ -57,19 +54,21 @@ const UserCardContainer = ()=>{
     );
 }
 const SavingInfo = memo(() => {
+    const [context,setContext] = useUserContextAtom()
     return (
         <div className='bd'>
-            组件B2: 这是其他不会变得信息
+            <span> 组件B2: {context.role}</span>
+            <br/>
             <span>{Math.random()}</span>
         </div>
     )
 });
 function NestingDemoExample() {
     return (
-        <div>
+        <Provider>
             <h3>复杂嵌套场景</h3>
             <UserContainer></UserContainer>
-        </div>
+        </Provider>
     );
 }
 
