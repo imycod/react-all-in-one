@@ -1,39 +1,47 @@
-import React, {createContext} from 'react';
+import React, {Component, createContext} from 'react';
 
 const AppContextContainer = createContext()
-function Foo() {
-    return (
-        <AppContextContainer.Consumer>
-            {value=><div>{value}</div>}
-        </AppContextContainer.Consumer>
-    );
+class Foo extends Component{
+    render(){
+        return (
+            <AppContextContainer.Consumer>
+                {value=><div>{value}</div>}
+            </AppContextContainer.Consumer>
+        );
+    }
 }
 
-function Bar() {
-    return <div>bar</div>
-}
-function Middel() {
-    return (
-        <>
-            <span>基础用法</span>
-            <div>
-                <Foo></Foo>
-                <Bar></Bar>
-                <Bar></Bar>
-            </div>
-        </>
-    );
+class Bar extends Component {
+    render(){
+        return <div>bar</div>
+    }
 }
 
-
-function AppContext() {
-    return (
-        <AppContextContainer.Provider value={"imycode"}>
+class Middle extends Component {
+    render() {
+        return (
             <>
-                <Middel></Middel>
+                <span>基础用法</span>
+                <div>
+                    <Foo></Foo>
+                    <Bar></Bar>
+                    <Bar></Bar>
+                </div>
             </>
-        </AppContextContainer.Provider>
-    );
+        );
+    }
+}
+
+class AppContext extends Component {
+    render(){
+        return (
+            <AppContextContainer.Provider value={"imycode"}>
+                <>
+                    <Middle></Middle>
+                </>
+            </AppContextContainer.Provider>
+        );
+    }
 }
 
 export default AppContext;
