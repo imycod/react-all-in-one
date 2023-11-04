@@ -2,13 +2,13 @@ import React from 'react';
 
 import CreateContext from "./createContext/CreateContext.tsx"
 import AppContext from "./AppContext"
+import NestingAtomExample from "./NestingContext";
 function Context() {
     return (
         <>
             {/*<CreateContext></CreateContext>*/}
-            <div>
-                <AppContext></AppContext>
-            </div>
+            {/*<AppContext></AppContext>*/}
+            <NestingAtomExample></NestingAtomExample>
         </>
     );
 }
