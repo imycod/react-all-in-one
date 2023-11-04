@@ -1,7 +1,8 @@
-import React, {Component, createContext, useMemo} from 'react';
+import React, {Component, createContext, memo, useMemo} from 'react';
+import {preview} from "vite";
 
-const UserInfo = createContext(null)
-const Role = createContext(null)
+const UserInfo = createContext({})
+const Role = createContext({})
 class UserContainer extends Component {
     state={
         userInfo: {
@@ -16,28 +17,64 @@ class UserContainer extends Component {
         })
     }
 
-    // userRole =useMemo(()=>({role:this.state.role,setRole:this.setRole}),[this.state.role,this.setRole])
-
     render(){
         return (
             <UserInfo.Provider value={this.state.userInfo}>
                 <Role.Provider value={{role:this.state.role,setRole:this.setRole}}>
-                    <div className="bd">
-                        <UserCard></UserCard>
-                        <span>{Math.random()}</span>
-                    </div>
+                    <UserCardContainer></UserCardContainer>
                 </Role.Provider>
             </UserInfo.Provider>
         )
     }
 }
 
-function SavingInfo() {
-    return <div className='bd'>
-        这是其他不会变得信息
-        <span>{Math.random()}</span>
-    </div>;
-}
+const UserCardContainer = memo(()=>{
+    return (
+        <div className="bd">
+            <UserCard></UserCard>
+            <span>{Math.random()}</span>
+        </div>
+    )
+})
+const SavingInfo = memo((props) => {
+    return (
+        <div className='bd'>
+            这是其他不会变得信息
+            <span>{Math.random()}</span>
+        </div>
+    )
+}, (prevProps, nextProps) => {
+    // if ( prevProps !== nextProps ) {
+    //     return false
+    // }else{
+    //     return true;
+    // }
+    return true
+});
+
+const RoleComponent=  memo((props)=>{
+    const userInfo = props.userInfo
+    return (
+        <Role.Consumer>
+            {
+                contextValue => (
+                    <div className="m-2 bd">
+                        <div>{userInfo.name} - {contextValue.role}</div>
+                        <input type="text" onChange={(event)=>contextValue.setRole(event.target.value)}/>
+                        <span>{Math.random()}</span>
+                    </div>
+                )
+            }
+        </Role.Consumer>
+
+    )
+},(prev,next)=>{
+    if (prev.userInfo.name === next.userInfo.name) {
+        return true;
+    } else {
+        return false;
+    }
+})
 
 function UserCard(){
     // function addData(type='') {
@@ -51,17 +88,7 @@ function UserCard(){
                 userInfo => (
                     <div style={{display:'flex',}}>
                         <span>{userInfo.name}</span>
-                        <Role.Consumer>
-                            {
-                                value => (
-                                    <div className="m-2 bd">
-                                        <div>{userInfo.name}-{value.role}</div>
-                                        <input type="text" onChange={(event)=>value.setRole(event.target.value)}/>
-                                        <span>{Math.random()}</span>
-                                    </div>
-                                )
-                            }
-                        </Role.Consumer>
+                        <RoleComponent userInfo={userInfo}></RoleComponent>
                         <SavingInfo></SavingInfo>
                     </div>
                 )
