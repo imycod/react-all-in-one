@@ -6,16 +6,17 @@
  * @FilePath: \react-all-in-one\src\App.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
+import React from "react";
+import {NavLink,Route, Routes} from "react-router-dom";
 
-import ContextExample from "./useContext/Context"
-import ReducerExample from "./useReducer"
+import ContextExample from "@/learnApi/useContext/Context"
+import ReducerExample from "@/learnApi/useReducer"
 // @ts-ignore
 // import TodoList from "@/business/todoList/demo1"
 import TodoApp from "@/business/todoList/demo2"
-// import SearchGitApp from "./business/searchGit";
-import SearchGitApp from "./business/searchGit/index1.tsx";
-import {BrowserRouter, Link, NavLink,Route, Router, Routes} from "react-router-dom";
-import MyNavLink from "./components/MyNavLink";
+// import SearchGitApp from "@/business/searchGit";
+import SearchGitApp from "@/business/searchGit/index1.tsx";
+import MyNavLink from "@/components/MyNavLink";
 function App() {
     return (
         <div>
@@ -27,9 +28,9 @@ function App() {
             <div className="row">
                 <div className="col-xs-offset-2 col-md-2">
                     <div className="list-group">
-                        <MyNavLink to="/business/git">git</MyNavLink>
+                        <MyNavLink to="/business/git">Api</MyNavLink>
+                        <NavLink className="list-group-item" to="/business/todo">business</NavLink>
                         {/*<NavLink className="list-group-item" to="/business/git">git</NavLink>*/}
-                        <NavLink className="list-group-item" to="/business/todo">todo</NavLink>
                     </div>
                 </div>
                 <div className="col-md-6">
