@@ -15,6 +15,7 @@ import TodoApp from "@/business/todoList/demo2"
 // import SearchGitApp from "./business/searchGit";
 import SearchGitApp from "./business/searchGit/index1.tsx";
 import {BrowserRouter, Link, NavLink,Route, Router, Routes} from "react-router-dom";
+import MyNavLink from "./components/MyNavLink";
 function App() {
     return (
         <div>
@@ -26,7 +27,8 @@ function App() {
             <div className="row">
                 <div className="col-xs-offset-2 col-md-2">
                     <div className="list-group">
-                        <NavLink className="list-group-item" to="/business/git">git</NavLink>
+                        <MyNavLink to="/business/git">git</MyNavLink>
+                        {/*<NavLink className="list-group-item" to="/business/git">git</NavLink>*/}
                         <NavLink className="list-group-item" to="/business/todo">todo</NavLink>
                     </div>
                 </div>
