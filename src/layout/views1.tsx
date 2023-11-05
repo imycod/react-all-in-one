@@ -3,14 +3,11 @@ import React from 'react';
 
 import {NavLink, Outlet, Route, Routes} from "react-router-dom";
 import MyNavLink from "@/components/MyNavLink";
+import Header from "./Header.tsx";
 function Views1(props) {
     return (
         <>
-            <div className="row">
-                <div className="col-xs-offset-2 col-xs-8">
-                    <h1>标题</h1>
-                </div>
-            </div>
+            <Header></Header>
             <div className="row">
                 <div className="col-xs-offset-2 col-md-2">
                     <div className="list-group">

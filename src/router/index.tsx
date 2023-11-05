@@ -69,12 +69,19 @@ const router: RouteObject[] = [
                     },
                     {
                         path: "/business/user",
-                        element: lazyLoad(<UserList/>)
+                        element: lazyLoad(<UserList/>),
+                        children:[
+                            {
+                                path: "/business/user",
+                                element: lazyLoad(<UserDetail/>)
+                            },
+                            {
+                                path: "/business/user/:id",
+                                element: lazyLoad(<UserDetail/>)
+                            },
+                        ]
                     },
-                    {
-                        path: "/business/user/:id",
-                        element: lazyLoad(<UserDetail/>)
-                    },
+
                 ]
             }
         ]
