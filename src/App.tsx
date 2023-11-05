@@ -12,7 +12,8 @@ import ReducerExample from "./useReducer"
 // @ts-ignore
 // import TodoList from "@/business/todoList/demo1"
 import TodoApp from "@/business/todoList/demo2"
-import SearchGitApp from "./business/searchGit";
+// import SearchGitApp from "./business/searchGit";
+import SearchGitApp from "./business/searchGit/index1.tsx";
 function App() {
     return (
         <>
