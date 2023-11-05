@@ -7,56 +7,38 @@
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import React from "react";
-import {NavLink,Route, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 
-import ContextExample from "@/learnApi/useContext/Context"
-import ReducerExample from "@/learnApi/useReducer"
-// @ts-ignore
-// import TodoList from "@/business/todoList/demo1"
-import TodoApp from "@/business/todoList/demo2"
-// import SearchGitApp from "@/business/searchGit";
-import SearchGitApp from "@/business/searchGit/index1.tsx";
-import MyNavLink from "@/components/MyNavLink";
+// layout 1
+import Views1 from "@/layout/views1"
+// layout 2
+import LearnApiPage from "@/views/learnApi";
+import BusinessPage from "@/views/business";
+// business
+import TodoApp from "@/views/business/todoList/demo2"
+import SearchGitApp from "@/views/business/searchGit/index1.tsx";
+// learnApi
+import ContextExample from "@/views/learnApi/useContext/Context"
+import ReducerExample from "@/views/learnApi/useReducer"
+import Login from "@/views/login";
 function App() {
     return (
-        <div>
-            <div className="row">
-                <div className="col-xs-offset-2 col-xs-8">
-                    <h1>标题</h1>
-                </div>
-            </div>
-            <div className="row">
-                <div className="col-xs-offset-2 col-md-2">
-                    <div className="list-group">
-                        <MyNavLink to="/business/git">Api</MyNavLink>
-                        <NavLink className="list-group-item" to="/business/todo">business</NavLink>
-                        {/*<NavLink className="list-group-item" to="/business/git">git</NavLink>*/}
-                    </div>
-                </div>
-                <div className="col-md-6">
-                    <div className="panel">
-                        <div className="card-body">
-                            <Routes>
-                                <Route path="/business/git" Component={SearchGitApp}></Route>
-                                <Route path="/business/todo" Component={TodoApp}></Route>
-                            </Routes>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {/*<div>*/}
-            {/*    <h4>useContext</h4>*/}
-            {/*    <ContextExample></ContextExample>*/}
-            {/*</div>*/}
-            {/*<div>*/}
-            {/*    <h4>useReducer</h4>*/}
-            {/*    <ReducerExample></ReducerExample>*/}
-            {/*</div>*/}
+        <>
 
-            {/*<TodoList></TodoList>*/}
-            {/*<TodoApp></TodoApp>*/}
-            {/*<SearchGitApp></SearchGitApp>*/}
-        </div>
+            <Routes>
+                <Route path="/" element={<Views1/>}>
+                    <Route path="/api" element={<LearnApiPage/>}>
+                        <Route index element={<ReducerExample/>}></Route>
+                        <Route path="/api/context" element={<ContextExample/>}></Route>
+                    </Route>
+                    <Route path="/business" element={<BusinessPage/>}>
+                        <Route index element={<SearchGitApp/>}></Route>
+                        <Route path="/business/todo" element={<TodoApp/>}></Route>
+                    </Route>
+                </Route>
+                <Route path="/login" element={<Login/>}></Route>
+            </Routes>
+        </>
     );
 }
 
