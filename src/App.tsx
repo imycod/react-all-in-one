@@ -12,6 +12,7 @@ import ReducerExample from "./useReducer"
 // @ts-ignore
 // import TodoList from "@/business/todoList/demo1"
 import TodoApp from "@/business/todoList/demo2"
+import SearchGitApp from "./business/searchGit";
 function App() {
     return (
         <>
@@ -25,7 +26,8 @@ function App() {
             {/*</div>*/}
 
             {/*<TodoList></TodoList>*/}
-            <TodoApp></TodoApp>
+            {/*<TodoApp></TodoApp>*/}
+            <SearchGitApp></SearchGitApp>
         </>
     );
 }

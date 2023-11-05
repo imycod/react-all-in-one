@@ -34,4 +34,15 @@ export default defineConfig({
       '@': resolve(__dirname, '.', './src/'),
     },
   },
+  server:{
+    proxy:{
+      '/mockapi': {
+        // target: 'https://jsonplaceholder.typicode.com',
+        target: 'https://6537c864a543859d1bb0d3b5.mockapi.io',
+        ws: true, // 是否启用 WebSocket
+        changeOrigin: true, // 是否修改请求头中的 Origin 字段
+        rewrite: (path) => path.replace(/^\/mockapi/, '')
+      },
+    }
+  }
 })
