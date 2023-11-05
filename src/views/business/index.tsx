@@ -13,6 +13,7 @@ function BusinessPage(props) {
             <div className="bd">
                 <MyNavLink to="/business/">git</MyNavLink>
                 <MyNavLink to="/business/todo">todo</MyNavLink>
+                <MyNavLink to="/business/user">user</MyNavLink>
             </div>
             <div>
                 <Outlet></Outlet>
