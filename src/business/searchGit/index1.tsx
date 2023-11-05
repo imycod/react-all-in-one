@@ -29,6 +29,7 @@ class SearchContainer extends Component {
         });
     }
     render(){
+        console.log(this.props)
         return (
             <div>
                 <input type="text" ref={c=> this.keyWordRef = c}/>
@@ -83,6 +84,7 @@ class ListContainer extends Component {
 
 class SearchGitApp extends Component {
     render() {
+        console.log(this.props)
         return (
             <div className="p-5 bd">
                 <SearchContainer></SearchContainer>

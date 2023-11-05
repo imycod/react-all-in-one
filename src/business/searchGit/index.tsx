@@ -49,6 +49,7 @@ class SearchContainer extends Component {
         })
     }
     render(){
+        console.log(this.props)
         return (
             <div>
                 <input type="text" ref={c=> this.keyWordRef = c}/>

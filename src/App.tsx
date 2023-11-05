@@ -14,7 +14,7 @@ import ReducerExample from "./useReducer"
 import TodoApp from "@/business/todoList/demo2"
 // import SearchGitApp from "./business/searchGit";
 import SearchGitApp from "./business/searchGit/index1.tsx";
-import {BrowserRouter, Link, Route, Router, Routes} from "react-router-dom";
+import {BrowserRouter, Link, NavLink,Route, Router, Routes} from "react-router-dom";
 function App() {
     return (
         <div>
@@ -26,8 +26,8 @@ function App() {
             <div className="row">
                 <div className="col-xs-offset-2 col-md-2">
                     <div className="list-group">
-                        <Link className="list-group-item" to="/business/git">git</Link>
-                        <Link className="list-group-item" to="/business/todo">todo</Link>
+                        <NavLink className="list-group-item" to="/business/git">git</NavLink>
+                        <NavLink className="list-group-item" to="/business/todo">todo</NavLink>
                     </div>
                 </div>
                 <div className="col-md-6">
