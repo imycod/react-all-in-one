@@ -14,9 +14,10 @@ import ReducerExample from "./useReducer"
 import TodoApp from "@/business/todoList/demo2"
 // import SearchGitApp from "./business/searchGit";
 import SearchGitApp from "./business/searchGit/index1.tsx";
+import {BrowserRouter, Link, Route, Router, Routes} from "react-router-dom";
 function App() {
     return (
-        <>
+        <div style={{display:'flex',justifyContent:"space-between"}}>
             {/*<div>*/}
             {/*    <h4>useContext</h4>*/}
             {/*    <ContextExample></ContextExample>*/}
@@ -28,8 +29,19 @@ function App() {
 
             {/*<TodoList></TodoList>*/}
             {/*<TodoApp></TodoApp>*/}
-            <SearchGitApp></SearchGitApp>
-        </>
+            {/*<SearchGitApp></SearchGitApp>*/}
+
+            <div>
+                <Link className="list-group-item" to="/business/git">git</Link>
+                <Link className="list-group-item" to="/business/todo">todo</Link>
+            </div>
+            <div>
+                <Routes>
+                    <Route path="/business/git" Component={SearchGitApp}></Route>
+                    <Route path="/business/todo" Component={TodoApp}></Route>
+                </Routes>
+            </div>
+        </div>
     );
 }
 
