@@ -9,17 +9,21 @@
 
 import ContextExample from "./useContext/Context"
 import ReducerExample from "./useReducer"
+// @ts-ignore
+import TodoList from "@/business/todoList"
 function App() {
     return (
         <>
-            <div>
-                <h4>useContext</h4>
-                <ContextExample></ContextExample>
-            </div>
+            {/*<div>*/}
+            {/*    <h4>useContext</h4>*/}
+            {/*    <ContextExample></ContextExample>*/}
+            {/*</div>*/}
             {/*<div>*/}
             {/*    <h4>useReducer</h4>*/}
             {/*    <ReducerExample></ReducerExample>*/}
             {/*</div>*/}
+
+            <TodoList></TodoList>
         </>
     );
 }
