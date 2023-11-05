@@ -17,7 +17,30 @@ import SearchGitApp from "./business/searchGit/index1.tsx";
 import {BrowserRouter, Link, Route, Router, Routes} from "react-router-dom";
 function App() {
     return (
-        <div style={{display:'flex',justifyContent:"space-between"}}>
+        <div>
+            <div className="row">
+                <div className="col-xs-offset-2 col-xs-8">
+                    <h1>标题</h1>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-xs-offset-2 col-md-2">
+                    <div className="list-group">
+                        <Link className="list-group-item" to="/business/git">git</Link>
+                        <Link className="list-group-item" to="/business/todo">todo</Link>
+                    </div>
+                </div>
+                <div className="col-md-6">
+                    <div className="panel">
+                        <div className="card-body">
+                            <Routes>
+                                <Route path="/business/git" Component={SearchGitApp}></Route>
+                                <Route path="/business/todo" Component={TodoApp}></Route>
+                            </Routes>
+                        </div>
+                    </div>
+                </div>
+            </div>
             {/*<div>*/}
             {/*    <h4>useContext</h4>*/}
             {/*    <ContextExample></ContextExample>*/}
@@ -30,17 +53,6 @@ function App() {
             {/*<TodoList></TodoList>*/}
             {/*<TodoApp></TodoApp>*/}
             {/*<SearchGitApp></SearchGitApp>*/}
-
-            <div>
-                <Link className="list-group-item" to="/business/git">git</Link>
-                <Link className="list-group-item" to="/business/todo">todo</Link>
-            </div>
-            <div>
-                <Routes>
-                    <Route path="/business/git" Component={SearchGitApp}></Route>
-                    <Route path="/business/todo" Component={TodoApp}></Route>
-                </Routes>
-            </div>
         </div>
     );
 }
