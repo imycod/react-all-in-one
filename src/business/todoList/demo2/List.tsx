@@ -1,21 +1,16 @@
-import {Component, createContext} from 'react';
+import React, {useContext} from 'react';
+
 import Item from "./ListItem.tsx"
 import {MyTodoContext} from "./TodoContext.tsx";
 
-const MyContext=createContext(MyTodoContext)
-class List extends Component{
-    static contextType=MyContext
-    render(){
-        const context=this.context._currentValue
-        const {todos}=context
-        return (
-            <>
-                <ul className="list-group">
-                    {todos.map(todo=><Item key={todo.id} {...todo} {...context}></Item>)}
-                </ul>
-            </>
-        );
-    }
+function List() {
+    const todoContext=useContext(MyTodoContext)
+    console.log(todoContext)
+    return (
+        <ul className="list-group">
+            {todoContext.todos.map(todo => <Item key={todo.id} {...todo}></Item>)}
+        </ul>
+    );
 }
 
 export default List;

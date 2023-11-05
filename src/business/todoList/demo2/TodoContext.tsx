@@ -1,38 +1,32 @@
-import {Component, createContext, useState} from "react";
+import React,{ createContext, useState} from "react";
 
-export const MyTodoContext= createContext({})
+const initialState = [
+    {
+        id: '001',
+        name: '吃饭',
+        done: false,
+    },
+    {
+        id: '002',
+        name: '睡觉',
+        done: false,
+    }, {
+        id: '003',
+        name: '打代码',
+        done: true,
+    },
+];
+export const MyTodoContext= createContext()
 export default function MyTodoContextContainer(props){
-    const initialState={
-        todos: [
-            {
-                id: '001',
-                name: '吃饭',
-                done: false,
-            },
-            // {
-            //     id: '002',
-            //     name: '睡觉',
-            //     done: false,
-            // }, {
-            //     id: '003',
-            //     name: '打代码',
-            //     done: true,
-            // },
-        ]
-    }
-    const [state,setState]=useState(initialState)
+
+    const [todoList,setTodoList]=useState(initialState)
 
     const setTodo = (todo) => {
-        const {todos} = state
-        const newTodos = [todo, ...todos]
-        setState({
-            todos: newTodos
-        })
+        setTodoList([todo, ...todoList])
     };
 
     const setCheckById=(id,done)=>{
-        const {todos}=state
-        const newTodos= todos.map(todo=>{
+        const newTodos= todoList.map(todo=>{
             if (todo.id==id){
                 return {
                     ...todo,
@@ -42,42 +36,44 @@ export default function MyTodoContextContainer(props){
                 return todo
             }
         })
-        setState({ todos:newTodos })
+        setTodoList(newTodos)
     }
     const handleDelete = (id) => {
-        // const {todos} = state
-        // const newTodos = todos.filter(todo => todo.id != id)
-        setState(prev=>{
-            console.log(({...prev,todos:[]}))
-            return [];
-        })
+        setTodoList(todoList.filter(todo => todo.id != id))
     };
 
     const handleCheckAll=(done)=>{
-        const {todos}=state
-        console.log(done)
-        const newTodos= todos.map(todo=>{
+        const newTodos= todoList.map(todo=>{
             return {
                 ...todo,
                 done
             }
         })
-        setState({todos:newTodos})
+        setTodoList(newTodos)
     }
     const handleClear=()=>{
-        const {todos}= state
-        const newTodos= todos.filter(todo=>!todo.done)
-        setState({todos:newTodos})
+        const newTodos= todoList.filter(todo=>!todo.done)
+        setTodoList(newTodos)
+    }
+
+    const updateTodo=(todo)=>{
+        const newTodoList=[...todoList]
+        const index = newTodoList.findIndex(t => t.id == todo.id);
+        if (index!==-1){
+            newTodoList[index] = todo
+            setTodoList(newTodoList)
+        }
     }
 
     return (
         <MyTodoContext.Provider value={{
-            todos:state.todos,
-            setTodo:setTodo,
-            setCheckById:setCheckById,
-            handleCheckAll:handleCheckAll,
-            handleDelete:handleDelete,
-            handleClear:handleClear
+            todos:todoList,
+            setTodo,
+            setCheckById,
+            handleCheckAll,
+            handleDelete,
+            handleClear,
+            updateTodo
         }}>
             {props.children}
         </MyTodoContext.Provider>

@@ -1,52 +1,66 @@
-import {Component} from 'react';
+import React, {useContext, useState} from 'react';
+
 import styles from "./listItem.module.css"
-class ListItem extends Component{
+import {MyTodoContext} from "./TodoContext.tsx";
 
-    state={
-        mouse:false,
-    }
-
-    setCheck=(id)=>{
-        return (event)=>{
-            const {setCheckById} = this.props
-            setCheckById(id,event.target.checked)
-        }
-    }
-
-    handleMouse=(flag)=>{
-        return (_)=>{
-            this.setState({
-                mouse:flag,
-                id:this.props.id
-            },()=>{
-                // console.log('listitem',this.state)
-            })
-        }
-    }
-    handleDelete=(id)=>{
-        if(window.confirm('确定删除吗')){
-            const {handleDelete} = this.props
-            handleDelete(id)
-        }
-    }
-    render(){
-        const {id, name, done} = this.props;
-        const {mouse}=this.state
-        const className=`list-group-item ${styles['flex-between']} ${mouse ? 'list-group-item-success':null}`
-        return (
-            <>
-                <li className={className} onMouseLeave={this.handleMouse(false)} onMouseEnter={this.handleMouse(true)}>
+function ListItem(todo) {
+    const [active,setActive]=useState(false)
+    const [edit,setEdit]=useState(false)
+    const [name,setName]=useState(todo.name)
+    const className=`list-group-item ${styles['flex-between']}  ${active ? 'list-group-item-success':null}`
+    const todoContext=useContext(MyTodoContext)
+    // @ts-ignore
+    return (
+        <li className={className} onMouseLeave={() => setActive(false)} onMouseEnter={() => setActive((true))}>
+            {
+                edit ?
+                    <input
+                        type="text"
+                        value={name}
+                        onChange={e=>setName(e.target.value)}
+                    /> :
                     <div>
-                        {/* defaultChecked={done} 只在初始化时有用 */}
-                        {/*<input className="form-check-input me-1" type="checkbox" name="listGroupRadio" value="" id="firstRadio" defaultChecked={done} onChange={this.setCheck(id)}/>*/}
-                        <input className="form-check-input me-1" type="checkbox" name="listGroupRadio" value="" id="firstRadio" checked={done} onChange={this.setCheck(id)}/>
-                        <label className="form-check-label" htmlFor="firstRadio">{name}</label>
+                        <input
+                            className="form-check-input me-1"
+                            type="checkbox"
+                            name="listGroupRadio"
+                            value=""
+                            id="firstRadio"
+                            onChange={(event) => {
+                                todoContext.setCheckById(todo.id, event.target.checked)
+                            }}
+                            checked={todo.done}
+                        />
+                        <label className="form-check-label" htmlFor="firstRadio">{todo.name}</label>
                     </div>
-                    <button onClick={()=>this.handleDelete(id)} type="button" className="btn btn-danger" style={{display:mouse ?'block':'none'}}>删除</button>
-                </li>
-            </>
-        );
-    }
+            }
+            <div  style={{display: active ? 'block' : 'none'}}>
+                <button
+                    onClick={() => {
+                        setEdit(!edit)
+                        console.log(todo.id)
+                        todoContext.updateTodo({
+                            id:todo.id,
+                            name:name
+                        })
+                    }}
+                    type="button"
+                    className="btn btn-primary">
+                    {edit ? '更新':'编辑'}
+                </button>
+                <button
+                    onClick={() => {
+                        if (window.confirm('确认删除')) {
+                            todoContext.handleDelete(todo.id)
+                        }
+                    }}
+                    type="button"
+                    className="btn btn-danger">
+                    删除
+                </button>
+            </div>
+        </li>
+    );
 }
 
 export default ListItem;

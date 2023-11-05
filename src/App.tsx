@@ -11,7 +11,7 @@ import ContextExample from "./useContext/Context"
 import ReducerExample from "./useReducer"
 // @ts-ignore
 // import TodoList from "@/business/todoList/demo1"
-import TodoList from "@/business/todoList/demo2"
+import TodoApp from "@/business/todoList/demo2"
 function App() {
     return (
         <>
@@ -24,7 +24,8 @@ function App() {
             {/*    <ReducerExample></ReducerExample>*/}
             {/*</div>*/}
 
-            <TodoList></TodoList>
+            {/*<TodoList></TodoList>*/}
+            <TodoApp></TodoApp>
         </>
     );
 }
