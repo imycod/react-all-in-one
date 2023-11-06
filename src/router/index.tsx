@@ -29,6 +29,7 @@ const ReducerExample = lazy(()=>import("@/views/learnApi/useReducer"))
 const ReduxReactExample = lazy(()=>import("@/views/learnApi/redux/react"))
 const ReduxToolkitExample = lazy(()=>import("@/views/learnApi/redux/toolkit"))
 const ReduxExample = lazy(()=>import("@/views/learnApi/redux/raw"))
+const ReduxPracticeExample = lazy(()=>import("@/views/learnApi/redux/practice"))
 // import Login from "@/views/login";
 const Login = lazy(()=>import("@/views/login"))
 const lazyLoad=(children:ReactNode):ReactNode=>{
@@ -63,6 +64,9 @@ const router: RouteObject[] = [
                     {
                         path: "/api/redux/raw",
                         element: lazyLoad(<ReduxExample/>)
+                    }, {
+                        path: "/api/redux/practice",
+                        element: lazyLoad(<ReduxPracticeExample/>)
                     },
                     {
                         path: "/api/context",

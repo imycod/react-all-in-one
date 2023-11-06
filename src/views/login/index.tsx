@@ -1,7 +1,7 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
-import {Button} from "antd";
-
+import {Button,DatePicker} from "antd";
+const { RangePicker } = DatePicker;
 function Login(props) {
     const navigate=useNavigate()
     const login = () => {
@@ -12,6 +12,7 @@ function Login(props) {
             Login
             <button onClick={login}>login</button>
             <Button type="primary">测试</Button>
+            <RangePicker />
         </div>
     );
 }

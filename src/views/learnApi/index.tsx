@@ -13,6 +13,7 @@ function LearnApiPage(props) {
                 <MyNavLink to="/api/redux/toolkit">redux-toolkit</MyNavLink>
                 <MyNavLink to="/api/redux/react">redux-react</MyNavLink>
                 <MyNavLink to="/api/redux/raw">redux-raw</MyNavLink>
+                <MyNavLink to="/api/redux/practice">redux-practice</MyNavLink>
                 <MyNavLink to="/api/context">useContext</MyNavLink>
             </div>
             <div>
