@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
+    "antd": "^5.11.0",
     "axios": "^1.6.0",
     "bootstrap": "5.2.3",
     "immer": "^10.0.3",
@@ -39,7 +40,9 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
     "redux-devtools": "^3.7.0",
+    "rollup-plugin-visualizer": "^5.9.2",
     "typescript": "^5.0.2",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "vite-plugin-import": "^0.4.0"
   }
 }

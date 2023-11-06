@@ -52,14 +52,14 @@ const router: RouteObject[] = [
                         index: true,
                         element: lazyLoad(<ReducerExample/>)
                     },
-                    // {
-                    //     path: "/api/redux/react",
-                    //     element: lazyLoad(<ReduxReactExample/>)
-                    // },
-                    // {
-                    //     path: "/api/redux/toolkit",
-                    //     element: lazyLoad(<ReduxToolkitExample/>)
-                    // },
+                    {
+                        path: "/api/redux/react",
+                        element: lazyLoad(<ReduxReactExample/>)
+                    },
+                    {
+                        path: "/api/redux/toolkit",
+                        element: lazyLoad(<ReduxToolkitExample/>)
+                    },
                     {
                         path: "/api/redux/raw",
                         element: lazyLoad(<ReduxExample/>)

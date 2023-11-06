@@ -22,23 +22,29 @@ import ContextExample from "@/views/learnApi/useContext/Context"
 import ReducerExample from "@/views/learnApi/useReducer"
 import Login from "@/views/login";
 import router from "./router";
+import {ConfigProvider} from "antd";
 function App() {
-    return useRoutes(router)
-    // <>
-    //     {/*<Routes>*/}
-    //     {/*    <Route path="/" element={<Views1/>}>*/}
-    //     {/*        <Route path="/api" element={<LearnApiPage/>}>*/}
-    //     {/*            <Route index element={<ReducerExample/>}></Route>*/}
-    //     {/*            <Route path="/api/context" element={<ContextExample/>}></Route>*/}
-    //     {/*        </Route>*/}
-    //     {/*        <Route path="/business" element={<BusinessPage/>}>*/}
-    //     {/*            <Route index element={<SearchGitApp/>}></Route>*/}
-    //     {/*            <Route path="/business/todo" element={<TodoApp/>}></Route>*/}
-    //     {/*        </Route>*/}
-    //     {/*    </Route>*/}
-    //     {/*    <Route path="/login" element={<Login/>}></Route>*/}
-    //     {/*</Routes>*/}
-    // </>
+    // https://juejin.cn/post/7167701003976835102?searchId=20231106213323D01676CC1C871813A637#heading-24
+    return (
+        <ConfigProvider theme={{token:{colorPrimary:'#f40'}}}>
+            {useRoutes(router)}
+        </ConfigProvider>
+    )
 }
+// <>
+//     {/*<Routes>*/}
+//     {/*    <Route path="/" element={<Views1/>}>*/}
+//     {/*        <Route path="/api" element={<LearnApiPage/>}>*/}
+//     {/*            <Route index element={<ReducerExample/>}></Route>*/}
+//     {/*            <Route path="/api/context" element={<ContextExample/>}></Route>*/}
+//     {/*        </Route>*/}
+//     {/*        <Route path="/business" element={<BusinessPage/>}>*/}
+//     {/*            <Route index element={<SearchGitApp/>}></Route>*/}
+//     {/*            <Route path="/business/todo" element={<TodoApp/>}></Route>*/}
+//     {/*        </Route>*/}
+//     {/*    </Route>*/}
+//     {/*    <Route path="/login" element={<Login/>}></Route>*/}
+//     {/*</Routes>*/}
+// </>
 
 export default App;
