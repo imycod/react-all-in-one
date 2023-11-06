@@ -18,6 +18,7 @@ const TodoApp = lazy(()=>import("@/views/business/todoList/demo2"))
 const SearchGitApp = lazy(()=>import("@/views/business/searchGit/index1.tsx"))
 // import UserList from "@/views/business/userList";
 const UserList = lazy(()=>import("@/views/business/userList"))
+const ReduxPersonList = lazy(()=>import("@/views/business/redux/personList"))
 // import UserDetail from '@/views/business/userList/userDetail.tsx'
 const UserDetail = lazy(()=>import("@/views/business/userList/userDetail.tsx"))
 
@@ -100,7 +101,10 @@ const router: RouteObject[] = [
                             },
                         ]
                     },
-
+                    {
+                        path: "/business/redux/person/list",
+                        element: lazyLoad(<ReduxPersonList/>),
+                    }
                 ]
             }
         ]

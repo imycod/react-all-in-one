@@ -14,6 +14,7 @@ function BusinessPage(props) {
                 <MyNavLink to="/business/">git</MyNavLink>
                 <MyNavLink to="/business/todo">todo</MyNavLink>
                 <MyNavLink to="/business/user">user</MyNavLink>
+                <MyNavLink to="/business/redux/person/list">redux person list</MyNavLink>
             </div>
             <div>
                 <Outlet></Outlet>

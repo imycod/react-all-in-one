@@ -20,14 +20,13 @@ class ReduxContainerChild extends Component{
     }
 }
 const mapStateToProps = (state) => {
+    console.log('state-----',state)
     return {
-        count: state.value
+        count: state.counterReducer.value
     }
 }
 const ReduxChildCount = connect(mapStateToProps)(ReduxContainerChild)
 
-
-import { createAddCountAction,createMinusCount } from '@/store/redux/raw/counter/action';
 function ReduxReactContainer(props) {
     console.log('ReduxContainer---',props);
     const dispatch = useDispatch();
