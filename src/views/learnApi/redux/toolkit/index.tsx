@@ -1,6 +1,6 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {decrement, increment} from "@/store/features/counter.tsx";
+import {decrement, increment} from "@/store/redux/toolkit/features/counter.tsx";
 
 function ReduxContainer(props) {
     const {value}= useSelector(store=>store.counter)

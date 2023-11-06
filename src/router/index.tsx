@@ -56,7 +56,7 @@ const router: RouteObject[] = [
                         element: lazyLoad(<ReduxExample/>)
                     },
                     {
-                        path: "/api/redux-tookit",
+                        path: "/api/redux/toolkit",
                         element: lazyLoad(<ReduxTookitExample/>)
                     },
                     {

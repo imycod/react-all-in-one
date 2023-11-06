@@ -13,8 +13,8 @@ import 'bootstrap/dist/css/bootstrap.css'
 import './assets/index.scss'
 import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
-// import store from "./store/reduxTookit/index.tsx";
-import store from "./store/redux/raw/index.tsx";
+// import store from "@/store/redux/toolkit/index.tsx";
+import store from "@/store/redux/raw/index.tsx";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
