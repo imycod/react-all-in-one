@@ -1,4 +1,4 @@
-import React, {createRef, useEffect, useState} from 'react';
+import React, {createRef, useEffect, useRef, useState} from 'react';
 import store from "@/store/redux/raw";
 // function ReduxExample(props) {
 //     // const state=store.getState()
@@ -56,11 +56,21 @@ function Counter() {
     const {counter,userinfo:user}=store.getState()
 
     const [count,setCount]=useState(counter.value)
+
+    let unCounterSubscribe=useRef()
+    const mounted=useRef()
     useEffect(()=>{
-        store.subscribe(()=>{
+        if (!mounted.current){
+            mounted.current=true
+        }
+        unCounterSubscribe.current =  store.subscribe(()=>{
             const {counter}=store.getState()
-            setCount(counter.value)
+            setCount(counter.value);
         })
+        return ()=>{
+            console.log('卸载取消订阅')
+            unCounterSubscribe.current()
+        }
     },[count])
 
     function add() {
@@ -81,16 +91,26 @@ function Counter() {
         </div>
     )
 }
+// https://blog.csdn.net/Mrwang21/article/details/125997540
 function User() {
     const {userinfo}=store.getState()
     const inputRef=createRef()
     const [user,setUser]=useState(userinfo)
 
+    let unUserSubscribe=null
+    const mounted=useRef()
     useEffect(()=>{
-        store.subscribe(()=>{
+        if (!mounted.current){
+            mounted.current=true
+        }
+        unUserSubscribe=store.subscribe(()=>{
             const {userinfo}=store.getState()
             setUser(userinfo)
         })
+        return ()=>{
+            console.log('userSubscribe')
+            unUserSubscribe()
+        }
     },[user])
 
     function addUser(){
