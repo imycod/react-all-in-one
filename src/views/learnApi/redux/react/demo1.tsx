@@ -81,15 +81,19 @@ class ClassBB extends Component<any, any>{
     }
 }
 // 容器组件
-const ClassBBContainer=connect(null,(dispatch) => {
-    return {
-        view:()=>{
-            dispatch(createClassCourseAction({type:'model',visible1:true,title:'查看'}))
-        },
-        asyncView:()=>{
-            dispatch(createAsyncAction({type:'model',visible1:true,title:'异步查看'},1000))
-        }
-    }
+// const ClassBBContainer=connect(null,(dispatch) => {
+//     return {
+//         view:()=>{
+//             dispatch(createClassCourseAction({type:'model',visible1:true,title:'查看'}))
+//         },
+//         asyncView:()=>{
+//             dispatch(createAsyncAction({type:'model',visible1:true,title:'异步查看'},1000))
+//         }
+//     }
+// })(ClassBB)
+const ClassBBContainer=connect(null,{
+    view:()=>createClassCourseAction({type:'model',visible1:true,title:'查看'}),
+    asyncView:()=>createAsyncAction({type:'model',visible1:true,title:'异步查看'},1000)
 })(ClassBB)
 // UI组件
 class ClassCourse extends Component{
