@@ -10,6 +10,8 @@ function LearnApiPage(props) {
             LearnApiPage
             <div className="bd">
                 <MyNavLink to="/api/">useReducer</MyNavLink>
+                <MyNavLink to="/api/redux">redux</MyNavLink>
+                <MyNavLink to="/api/redux-tookit">redux-tookit</MyNavLink>
                 <MyNavLink to="/api/context">useContext</MyNavLink>
             </div>
             <div>
