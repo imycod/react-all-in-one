@@ -1,80 +1,122 @@
-import React, {Component} from 'react';
-import {connect, useDispatch, useSelector} from 'react-redux';
-
-
-// function ReduxContainerChild(props) {
-//     console.log(props);
+import React, {createRef, useEffect, useState} from 'react';
+import store from "@/store/redux/raw";
+// function ReduxExample(props) {
+//     // const state=store.getState()
+//     const {counter,userinfo}=store.getState()
+//
+//     const [count,setCount]=useState(counter.value)
+//     const [user,setUser]=useState(userinfo)
+//     useEffect(()=>{
+//         store.subscribe(()=>{
+//             const {counter,userinfo}=store.getState()
+//             setCount(counter.value)
+//             setUser(userinfo)
+//         })
+//     },[count])
+//
+//     function add() {
+//         store.dispatch({
+//             type: 'INCREMENT',
+//         })
+//     }
+//     function minus(){
+//         store.dispatch({
+//             type: 'DECREMENT',
+//         })
+//     }
+//
+//     const inputRef=createRef()
+//     function addUser(){
+//         store.dispatch({
+//             type: 'ADD_USER',
+//             payload:{
+//                 name:inputRef.current.value,
+//                 avatar_url:'http://xxxx',
+//             }
+//         })
+//     }
 //     return (
 //         <div>
-//             {props.count}
+//             ReduxExample
+//             <div className="bd">
+//                 {count} -   {user.name} - {user.avatar_url}
+//                 <button onClick={add}>+</button>
+//                 <button onClick={minus}>-</button>
+//             </div>
+//             <div className="bd">
+//                 {user.name} - {user.avatar_url}
+//                 <input type="text" ref={inputRef}/>
+//                 <button onClick={addUser}>添加用户</button>
+//             </div>
 //         </div>
-//     )
+//     );
 // }
-class ReduxContainerChild extends Component{
-    render(){
-        return (
-            <div>
-                {this.props.count}
-            </div>
-        );
-    }
-}
-const mapStateToProps = (state) => {
-    return {
-        count: state.value
-    }
-}
-const ReduxChildCount = connect(mapStateToProps)(ReduxContainerChild)
 
+function Counter() {
+    const {counter,userinfo:user}=store.getState()
 
-import { createAddCountAction,createMinusCount } from '@/store/redux/raw/counter/action';
-function ReduxContainer(props) {
-    console.log('ReduxContainer---',props);
-    const dispatch = useDispatch();
+    const [count,setCount]=useState(counter.value)
+    useEffect(()=>{
+        store.subscribe(()=>{
+            const {counter}=store.getState()
+            setCount(counter.value)
+        })
+    },[count])
 
-    // const counter = useSelector(state => state.counter);
     function add() {
-        // props.addCount()  // use connect
-        dispatch({type:'increment',value:1})
+        store.dispatch({
+            type: 'INCREMENT',
+        })
     }
-    function minus() {
-        // props.miusCount() // use connect
-        dispatch({type:'decrement',value:1})
+    function minus(){
+        store.dispatch({
+            type: 'DECREMENT',
+        })
     }
     return (
-        <div>
-            redux
-            <ReduxChildCount />
-            <button onClick={add}>加</button>
-            <button onClick={minus}>减</button>
+        <div className="bd">
+            {count} -   {user.name} - {user.avatar_url}
+            <button onClick={add}>+</button>
+            <button onClick={minus}>-</button>
         </div>
-    );
+    )
+}
+function User() {
+    const {userinfo}=store.getState()
+    const inputRef=createRef()
+    const [user,setUser]=useState(userinfo)
+
+    useEffect(()=>{
+        store.subscribe(()=>{
+            const {userinfo}=store.getState()
+            setUser(userinfo)
+        })
+    },[user])
+
+    function addUser(){
+        store.dispatch({
+            type: 'ADD_USER',
+            payload:{
+                name:inputRef.current.value,
+                avatar_url:'http://xxxx',
+            }
+        })
+    }
+    return (
+        <div className="bd">
+            {user.name} - {user.avatar_url}
+            <input type="text" ref={inputRef}/>
+            <button onClick={addUser}>添加用户</button>
+        </div>
+    )
+}
+function ReduxExample() {
+    return (
+        <div>
+            <Counter></Counter>
+            <User></User>
+        </div>
+    )
 }
 
-// class ReduxContainer extends Component{
-//
-//     render(){
-//         return (
-//             <div>
-//                 redux
-//                 <ReduxChildCount />
-//                 <button onClick={()=>this.props.addCount()}>加</button>
-//                 <button onClick={()=>this.props.miusCount()}>减</button>
-//             </div>
-//         );
-//     }
-// }
-// https://medium.com/@rrohit.maheshwari/react-app-using-redux-e6a1a69822d1
-
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         addCount() {
-//             dispatch({type:'increment',value:10})
-//         },
-//         miusCount() {
-//             dispatch({type:'decrement',value:29})
-//         },
-//     }
-// }
-// export default connect(null,mapDispatchToProps)(ReduxContainer);
-export default ReduxContainer;
+export default ReduxExample;

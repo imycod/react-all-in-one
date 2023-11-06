@@ -26,8 +26,9 @@ const UserDetail = lazy(()=>import("@/views/business/userList/userDetail.tsx"))
 const ContextExample = lazy(()=>import("@/views/learnApi/useContext/Context"))
 // import ReducerExample from "@/views/learnApi/useReducer"
 const ReducerExample = lazy(()=>import("@/views/learnApi/useReducer"))
+const ReduxReactExample = lazy(()=>import("@/views/learnApi/redux/react"))
+const ReduxToolkitExample = lazy(()=>import("@/views/learnApi/redux/toolkit"))
 const ReduxExample = lazy(()=>import("@/views/learnApi/redux/raw"))
-const ReduxTookitExample = lazy(()=>import("@/views/learnApi/redux/toolkit"))
 // import Login from "@/views/login";
 const Login = lazy(()=>import("@/views/login"))
 const lazyLoad=(children:ReactNode):ReactNode=>{
@@ -51,13 +52,17 @@ const router: RouteObject[] = [
                         index: true,
                         element: lazyLoad(<ReducerExample/>)
                     },
+                    // {
+                    //     path: "/api/redux/react",
+                    //     element: lazyLoad(<ReduxReactExample/>)
+                    // },
+                    // {
+                    //     path: "/api/redux/toolkit",
+                    //     element: lazyLoad(<ReduxToolkitExample/>)
+                    // },
                     {
-                        path: "/api/redux",
+                        path: "/api/redux/raw",
                         element: lazyLoad(<ReduxExample/>)
-                    },
-                    {
-                        path: "/api/redux/toolkit",
-                        element: lazyLoad(<ReduxTookitExample/>)
                     },
                     {
                         path: "/api/context",
