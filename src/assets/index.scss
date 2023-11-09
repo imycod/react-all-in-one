@@ -1,0 +1,39 @@
+@for $i from 1 through 200 {
+    .m-l-#{$i} {
+        margin-left: (1px * $i);
+    }
+
+    .m-t-#{$i} {
+        margin-top: (1px * $i);
+    }
+
+    .m-r-#{$i} {
+        margin-right: (1px * $i);
+    }
+
+    .m-b-#{$i} {
+        margin-bottom: (1px * $i);
+    }
+
+    .p-l-#{$i} {
+        padding-left: (1px * $i);
+    }
+
+    .p-t-#{$i} {
+        padding-top: (1px * $i);
+    }
+
+    .p-r-#{$i} {
+        padding-right: (1px * $i);
+    }
+
+    .p-b-#{$i} {
+        padding-bottom: (1px * $i);
+    }
+}
+.list-group-link-active{
+    background: #f40 !important;
+}
+.bd{
+    border: 1px solid red;
+}
